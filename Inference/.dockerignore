@@ -1,0 +1,6 @@
+test/
+val/
+input/
+*.sh
+*.tar.gz
+*.zip
