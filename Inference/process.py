@@ -9,9 +9,9 @@ from preprocessing_functions import *
 from post_processing_functions import *
 from preregistration.preregistration import process_file
 
-os.environ['nnUNet_raw'] = '/opt/app/nnUNet_raw'
-os.environ['nnUNet_preprocessed'] = '/opt/app/nnUNet_preprocessed'
-os.environ['nnUNet_results'] = '/opt/app/weights/nnUNet_results'
+os.environ['nnUNet_raw'] = './nnUNet_raw'
+os.environ['nnUNet_preprocessed'] = './nnUNet_preprocessed'
+os.environ['nnUNet_results'] = './weights/nnUNet_results'
 
 from predictor import predictor as nnUNet_predictor
 
@@ -22,7 +22,7 @@ nnUNet_results_dir = os.environ['nnUNet_results']
 
 class Lnq2023(SegmentationAlgorithm):
     def __init__(self):
-        output_path = Path('/output/images/mediastinal-lymph-node-segmentation/')
+        output_path = Path('./output/images/mediastinal-lymph-node-segmentation/')
         if not output_path.exists():
             output_path.mkdir(parents=True, exist_ok=True)
         if not Path(nnUNet_raw_dir).exists():
@@ -30,7 +30,7 @@ class Lnq2023(SegmentationAlgorithm):
         if not Path(nnUNet_preprocessed_dir).exists():
             Path(nnUNet_preprocessed_dir).mkdir(parents=True, exist_ok=True)
         super().__init__(
-            input_path=Path('/input/images/mediastinal-ct/'),
+            input_path=Path('./input/images/mediastinal-ct/'),
             output_path=output_path,
             validators=dict(
                 input_image=(
