@@ -24,11 +24,11 @@ def total_segmentation(patient: PatientCase, force=False, debug=True):
         output_segm_filename = patient.filenames['total_segm']
         print(f"  make segmentation and write to {output_segm_filename}")
         try:
-            cmd = f'source /opt/app/venv/bin/activate; TotalSegmentator -i {ct_filename} -o {output_segm_filename} -ml -f; deactivate'
-            subprocess.run(cmd, shell=True, executable='/bin/bash', cwd='/home/user', check=True)
+            cmd = f'TotalSegmentator -i {ct_filename} -o {output_segm_filename} -ml -f'
+            subprocess.run(cmd, shell=True, executable='/bin/bash', cwd='/homes/ykawamura', check=True)
         except subprocess.CalledProcessError as e:
-            cmd = f'source /opt/app/venv/bin/activate; TotalSegmentator -i {ct_filename} -o {output_segm_filename} -ml -f -fs -bs; deactivate'
-            subprocess.run(cmd, shell=True, executable='/bin/bash', cwd='/home/user')
+            cmd = f'TotalSegmentator -i {ct_filename} -o {output_segm_filename} -ml -f -fs -bs'
+            subprocess.run(cmd, shell=True, executable='/bin/bash', cwd='/homes/ykawamura')
         #np_segm_image = totalsegmentator(ct_filename, output_segm_filename, ml=True, verbose=False)
     if not patient.is_available('reg_mask') or force:
         print(f"  make reg mask and write to {patient.filenames['reg_mask']}")
@@ -227,7 +227,7 @@ def process_file(filename: str, patient_id: str):
     print(f"   PROCESS {patient_id} file {filename}\n")
     st = time.time()
     use_force = True
-    use_debug = False
+    use_debug = True #COMMENT: debugモードに切り替える
     patient = PatientCase(patient_id, ct_filename=filename)
     total_segmentation(patient, force=use_force, debug=use_debug)
     atlas = Atlas()
