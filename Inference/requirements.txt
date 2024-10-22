@@ -92,8 +92,8 @@ urllib3==2.0.3
     # via requests
 wheel==0.40.0
     # via pip-tools
-natsort~=7.1.1
-monai~=1.2.0
+natsort==7.1.1
+monai==1.2.0
 
 # The following packages are considered to be unsafe in a requirements file:
 # pip
