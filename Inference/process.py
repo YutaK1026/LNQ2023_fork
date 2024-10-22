@@ -90,7 +90,7 @@ class Lnq2023(SegmentationAlgorithm):
         ct_path = os.path.join(nnUNet_raw_dir, f'ct_{idx+1:03d}', name_ct)
         from_nrrd_to_nifti(input_image_file_path, Path(ct_path))
         process_file(ct_path, f'ct_{idx + 1:03d}')
-        lungmasks = Path(f'/opt/app/Results2/subjects/ct_{idx + 1:03d}/')
+        lungmasks = Path(f'./Results2/subjects/ct_{idx + 1:03d}/')
         name_lungmask = f'ct_{idx+1:03d}_lung_mask.nii.gz'
         lungmask_path = os.path.join(lungmasks, name_lungmask)
         regmask_path = create_regmask(lungmask_path)
