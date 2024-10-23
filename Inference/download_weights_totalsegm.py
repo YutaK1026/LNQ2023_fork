@@ -1,6 +1,7 @@
-import totalsegmentator
-import sys
 import os
+import sys
+
+import totalsegmentator
 
 path = path = os.path.dirname(totalsegmentator.__file__)
 sys.path.append(path)
